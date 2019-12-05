@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <router-view></router-view>
+    <tab></tab>
   </div>
 </template>
+<script>
+import Tab from "./components/tab.vue";
 
+export default {
+  components: {
+    Tab
+  }
+};
+</script>
 <style lang="stylus"></style>
