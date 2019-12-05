@@ -13,4 +13,8 @@ export default {
   }
 };
 </script>
-<style lang="stylus"></style>
+<style lang="stylus">
+#app
+  font-family: 'dengxian';
+  background-color blue
+</style>

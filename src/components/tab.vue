@@ -9,10 +9,12 @@
           class="tab-item"
           :to="one.to"
         >
-          <svg-icon
-            :iconClass="one.iconClass"
-            style="width:20px;height:20px"
-          ></svg-icon>
+          <span class="icon">
+            <svg-icon
+              :iconClass="one.iconClass"
+              style="width:20px;height:20px"
+            ></svg-icon>
+          </span>
           <span class="tab-span">{{ one.name }}</span>
         </router-link>
       </div>
@@ -32,7 +34,7 @@ export default {
           to: "/finding"
         },
         {
-          iconClass: "singer",
+          iconClass: "vidio",
           name: "视频",
           to: "/vidio"
         },
@@ -66,4 +68,11 @@ export default {
     right 0
     .tab-container
       display flex
+      background-color red
+      justify-content space-around
+      .tab-span,.icon
+        display block
+        background-color yellow
+        text-align center
+        font-size 10px
 </style>

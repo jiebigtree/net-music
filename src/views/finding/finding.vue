@@ -1,6 +1,10 @@
 <template>
   <div class="finding">
-    finding
+    <scroll>
+      <ul>
+        <li v-for="(item, index) in 120" :key="index">{{ item }}</li>
+      </ul>
+    </scroll>
   </div>
 </template>
 
