@@ -9,6 +9,11 @@ import topHeader from "./components/topHeader.vue";
 import "./assets/stylus/font.styl";
 import "./assets/stylus/index.styl";
 
+import Vant from "vant";
+import "vant/lib/index.css";
+
+Vue.use(Vant);
+
 Vue.component("scroll", scroll);
 Vue.component("topHeader", topHeader);
 

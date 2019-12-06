@@ -48,7 +48,6 @@ export default {
   top 0
   left 0
   right 0
-  border 1px solid green
   text-align center
   z-index 1
   .one,.two,.three,.four

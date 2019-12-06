@@ -1,15 +1,87 @@
 <template>
   <div class="finding">
-    <top-header>
-      <div slot="one">1</div>
-      <input type="text" slot="two" />
-      <div slot="three">2</div>
-    </top-header>
-    <div class="ul">
+    <div class="top">
+      <top-header>
+        <div slot="one">
+          <svg-icon
+            iconClass="tinggeshiqu"
+            style="width:20px;height:20px"
+          ></svg-icon>
+        </div>
+        <div slot="two" class="input">
+          <span>
+            <svg-icon
+              iconClass="search"
+              style="width:35px;height:35px"
+            ></svg-icon>
+          </span>
+          <input type="text" placeholder="听见" />
+        </div>
+        <div slot="three">
+          <svg-icon
+            iconClass="playing"
+            style="width:20px;height:20px"
+          ></svg-icon>
+        </div>
+      </top-header>
+    </div>
+    <div class="center">
       <scroll>
-        <ul slot="page-content">
-          <li v-for="(item, index) in 120" :key="index">{{ item }}</li>
-        </ul>
+        <div slot="page-content">
+          <!-- banner图开始 -->
+          <div class="banner-container">
+            <van-swipe :autoplay="3000">
+              <van-swipe-item v-for="(item, index) in bannerPics" :key="index">
+                <img :src="item.pic" width="100%" />
+              </van-swipe-item>
+            </van-swipe>
+          </div>
+          <!-- 几个小图标菜单开始 -->
+          <div class="menu-icon-container">
+            <div
+              v-for="(item, index) in menuIcon"
+              :key="index"
+              class="one-menu-icon"
+            >
+              <span class="icon-outer">
+                <span class="icon">
+                  <svg-icon
+                    :iconClass="item.icon"
+                    style="width:22px;height:22px"
+                  ></svg-icon>
+                </span>
+              </span>
+              <span class="name">{{ item.name }}</span>
+            </div>
+          </div>
+          <!-- 推荐歌单开始 -->
+          <div class="introduce-song-menu"></div>
+          <div class="title">
+            <h1>推荐歌单</h1>
+            <span>歌单广场</span>
+          </div>
+          <div class="list-container">
+            <div
+              v-for="(item, index) in songMenu"
+              :key="index"
+              class="one-menu"
+            >
+              <div class="up">
+                <img :src="item.picUrl" alt="" width="100%" />
+                <span class="play-count">
+                  <svg-icon
+                    iconClass="triangle"
+                    style="width:10px;height:10px"
+                  ></svg-icon>
+                  <span class="num">{{ item.playCount | numFilter }}</span>
+                </span>
+              </div>
+              <div class="down">
+                <span class="down-name">{{ item.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </scroll>
     </div>
   </div>
@@ -17,16 +89,46 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
+
 export default {
-  name: "finding"
+  name: "finding",
+  data() {
+    return {
+      bannerPics: [],
+      menuIcon: [
+        { icon: "introduce", name: "每日推荐" },
+        { icon: "gedan", name: "歌单" },
+        { icon: "paihangbang", name: "排行榜" },
+        { icon: "diantai", name: "电台" },
+        { icon: "live", name: "直播" }
+      ],
+      songMenu: []
+    };
+  },
+  created() {
+    // 获取banner图
+    axios.get("http://localhost:3000/banner?type=2").then(res => {
+      // console.log(res.data.banners);
+      this.bannerPics = res.data.banners;
+    });
+    // 获取歌单
+    axios.get("http://localhost:3000/personalized?limit=6").then(res => {
+      this.songMenu = res.data.result;
+      // console.log(res.data.result);
+    });
+  },
+  filters: {
+    numFilter(num) {
+      if (num > 9999) {
+        if (num > 99999999) num = parseInt(num / 100000000) + "亿";
+        else num = parseInt(num / 10000) + "万";
+      } else return num;
+      return num;
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
-.ul
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-  background-color pink
+@import "../../assets/stylus/finding"
 </style>

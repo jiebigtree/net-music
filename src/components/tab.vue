@@ -66,7 +66,7 @@ export default {
     bottom 0
     left 0
     right 0
-    background-color rgba(250,250,250,.9)
+    background-color rgba(245,245,245,.9)
     .tab-container
       display flex
       justify-content space-around
