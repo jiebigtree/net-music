@@ -1,12 +1,43 @@
 <template>
   <div class="top-header-container">
-    <div class="headers">header</div>
+    <div class="headers">
+      <div class="one" v-if="one">
+        <slot name="one"></slot>
+      </div>
+      <div class="two" v-if="two">
+        <slot name="two"></slot>
+      </div>
+      <div class="three" v-if="three">
+        <slot name="three"></slot>
+      </div>
+      <div class="four" v-if="four">
+        <slot name="four"></slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "top-header"
+  name: "top-header",
+  props: {
+    one: {
+      type: Boolean,
+      default: true
+    },
+    two: {
+      type: Boolean,
+      default: true
+    },
+    three: {
+      type: Boolean,
+      default: true
+    },
+    four: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
@@ -20,4 +51,14 @@ export default {
   border 1px solid green
   text-align center
   z-index 1
+  .one,.two,.three,.four
+    float left
+    // border 1px solid yellow
+    // box-sizing border-box
+    width 12%
+    text-align center
+    line-height 50px
+  .two
+    width 60%
+    margin 0 8%
 </style>

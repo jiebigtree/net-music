@@ -1,6 +1,10 @@
 <template>
   <div class="finding">
-    <top-header></top-header>
+    <top-header>
+      <div slot="one">1</div>
+      <input type="text" slot="two" />
+      <div slot="three">2</div>
+    </top-header>
     <div class="ul">
       <scroll>
         <ul slot="page-content">
