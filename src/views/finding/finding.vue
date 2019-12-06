@@ -103,7 +103,8 @@ export default {
         { icon: "diantai", name: "电台" },
         { icon: "live", name: "直播" }
       ],
-      songMenu: []
+      songMenu: [],
+      newDish: []
     };
   },
   created() {
@@ -116,6 +117,10 @@ export default {
     axios.get("http://localhost:3000/personalized?limit=6").then(res => {
       this.songMenu = res.data.result;
       // console.log(res.data.result);
+    });
+    axios.get("http://localhost:3000/top/album?offset=0&limit=3").then(res => {
+      // console.log(res.data.albums);
+      this.newDish = res.data.albums;
     });
   },
   filters: {
