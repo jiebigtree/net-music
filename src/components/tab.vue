@@ -59,20 +59,21 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus" scoped>
 .tab-huge-container
-  height 50px
+  height 40px
   .tab
-    height 50px
+    height 40px
     position fixed
     bottom 0
     left 0
     right 0
+    background-color rgba(250,250,250,.9)
     .tab-container
       display flex
-      background-color red
       justify-content space-around
+      height 40px
       .tab-span,.icon
         display block
-        background-color yellow
         text-align center
         font-size 10px
+        margin 3px
 </style>

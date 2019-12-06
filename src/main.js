@@ -4,11 +4,13 @@ import router from "./router";
 import store from "./store";
 import "@/assets/icons";
 import scroll from "./components/scroll.vue";
+import topHeader from "./components/topHeader.vue";
 
 import "./assets/stylus/font.styl";
 import "./assets/stylus/index.styl";
 
 Vue.component("scroll", scroll);
+Vue.component("topHeader", topHeader);
 
 Vue.config.productionTip = false;
 

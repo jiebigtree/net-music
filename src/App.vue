@@ -16,5 +16,4 @@ export default {
 <style lang="stylus">
 #app
   font-family: 'dengxian';
-  background-color blue
 </style>

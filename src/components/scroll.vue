@@ -1,8 +1,13 @@
 <template>
   <div class="scroll-container">
-    <div class="wrapper" ref="wrapper" :class="{ nofooter: nofooter }">
-      <div ref="content">
-        <slot></slot>
+    <div class="wrapper" ref="wrapper">
+      <div ref="content" class="content" :class="{ hasFooter: hasFooter }">
+        <div>
+          <slot name="page-content"></slot>
+        </div>
+        <div>
+          <slot name="list-content"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -12,6 +17,10 @@ import BScroll from 'better-scroll'
 
 export default {
   props: {
+    hasFooter:{
+      type:Boolean,
+      default:true
+    }
   },
   data(){
     return{
@@ -47,8 +56,12 @@ export default {
 .wrapper
   overflow: hidden;
   position: absolute;
-  top: 50px;
-  bottom 50px
+  top: 0;
+  bottom 0
   left: 0;
   right: 0;
+  .content
+    padding-top 50px
+  .hasFooter
+    padding-bottom 40px
 </style>
