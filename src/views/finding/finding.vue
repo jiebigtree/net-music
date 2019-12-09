@@ -94,8 +94,8 @@
           </div>
           <!-- 新碟开始 -->
           <div class="dish-container">
-            <div class="one-dish">
-              <img src="" alt="" />
+            <div class="one-dish" v-for="(item, index) in newDish" :key="index">
+              <img :src="item.blurPicUrl" alt="" width="100%" />
               <h1></h1>
               <span></span>
             </div>
@@ -139,7 +139,7 @@ export default {
     });
     // 获取专辑
     axios.get("http://localhost:3000/top/album?offset=0&limit=3").then(res => {
-      // console.log(res.data.albums);
+      console.log(res.data.albums);
       this.newDish = res.data.albums;
     });
   },
