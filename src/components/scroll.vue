@@ -56,12 +56,10 @@ export default {
 .wrapper
   overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 50px;
   bottom 0
   left: 0;
   right: 0;
-  .content
-    padding-top 50px
   .hasFooter
     padding-bottom 40px
 </style>

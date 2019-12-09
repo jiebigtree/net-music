@@ -5,6 +5,7 @@ import store from "./store";
 import "@/assets/icons";
 import scroll from "./components/scroll.vue";
 import topHeader from "./components/topHeader.vue";
+import list from "./components/list.vue";
 
 import "./assets/stylus/font.styl";
 import "./assets/stylus/index.styl";
@@ -16,6 +17,7 @@ Vue.use(Vant);
 
 Vue.component("scroll", scroll);
 Vue.component("topHeader", topHeader);
+Vue.component("list", list);
 
 Vue.config.productionTip = false;
 

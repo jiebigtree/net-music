@@ -31,6 +31,14 @@ const routes = [
     name: "cloud",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/cloud/cloud.vue")
+  },
+  {
+    path: "/songMenu/:id",
+    name: "songMenu",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/finding/songMenu/songMenu.vue"
+      )
   }
 ];
 

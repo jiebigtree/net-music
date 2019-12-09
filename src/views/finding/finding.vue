@@ -65,6 +65,7 @@
                 v-for="(item, index) in songMenu"
                 :key="index"
                 class="one-menu"
+                @click="toMenuDetail(item.id)"
               >
                 <div class="up">
                   <img :src="item.picUrl" alt="" width="100%" />
@@ -139,7 +140,7 @@ export default {
     });
     // 获取专辑
     axios.get("http://localhost:3000/top/album?offset=0&limit=3").then(res => {
-      console.log(res.data.albums);
+      // console.log(res.data.albums);
       this.newDish = res.data.albums;
     });
   },
@@ -150,6 +151,16 @@ export default {
         else num = parseInt(num / 10000) + "万";
       } else return num;
       return num;
+    }
+  },
+  methods: {
+    toMenuDetail(id) {
+      this.$router.push({
+        name: "songMenu",
+        params: {
+          id: id
+        }
+      });
     }
   }
 };
