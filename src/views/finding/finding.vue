@@ -55,30 +55,49 @@
             </div>
           </div>
           <!-- 推荐歌单开始 -->
-          <div class="introduce-song-menu"></div>
-          <div class="title">
-            <h1>推荐歌单</h1>
-            <span>歌单广场</span>
+          <div class="introduce-song-menu">
+            <div class="title">
+              <h1>推荐歌单</h1>
+              <span>歌单广场</span>
+            </div>
+            <div class="list-container">
+              <div
+                v-for="(item, index) in songMenu"
+                :key="index"
+                class="one-menu"
+              >
+                <div class="up">
+                  <img :src="item.picUrl" alt="" width="100%" />
+                  <span class="play-count">
+                    <svg-icon
+                      iconClass="triangle"
+                      style="width:10px;height:10px"
+                    ></svg-icon>
+                    <span class="num">{{ item.playCount | numFilter }}</span>
+                  </span>
+                </div>
+                <div class="down">
+                  <span class="down-name">{{ item.name }}</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="list-container">
-            <div
-              v-for="(item, index) in songMenu"
-              :key="index"
-              class="one-menu"
-            >
-              <div class="up">
-                <img :src="item.picUrl" alt="" width="100%" />
-                <span class="play-count">
-                  <svg-icon
-                    iconClass="triangle"
-                    style="width:10px;height:10px"
-                  ></svg-icon>
-                  <span class="num">{{ item.playCount | numFilter }}</span>
-                </span>
-              </div>
-              <div class="down">
-                <span class="down-name">{{ item.name }}</span>
-              </div>
+          <!-- 中间部分开始 -->
+          <div class="center-container">
+            <div class="center-left">
+              <h1 class="center-title">新碟</h1>
+              <span class="center-title">|</span>
+              <h1 class="center-title">新歌</h1>
+            </div>
+            <!-- <span class="center-right">更多新碟</span> -->
+            <span class="center-right">更多新歌</span>
+          </div>
+          <!-- 新碟开始 -->
+          <div class="dish-container">
+            <div class="one-dish">
+              <img src="" alt="" />
+              <h1></h1>
+              <span></span>
             </div>
           </div>
         </div>
@@ -118,6 +137,7 @@ export default {
       this.songMenu = res.data.result;
       // console.log(res.data.result);
     });
+    // 获取专辑
     axios.get("http://localhost:3000/top/album?offset=0&limit=3").then(res => {
       // console.log(res.data.albums);
       this.newDish = res.data.albums;
