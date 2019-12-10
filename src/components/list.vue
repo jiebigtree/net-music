@@ -37,19 +37,32 @@ export default {
       picUrl: "",
       alName: "",
       singerName: "",
-      mv: ""
+      mv: "",
+      songUrl: ""
     };
   },
   created() {
+    let getSongUrl = "http://localhost:3000/song/url?id=" + this.id;
+    axios.get(getSongUrl).then(res => {
+      this.songUrl = res.data.data[0].url;
+    });
     let url = "http://localhost:3000/song/detail?ids=" + this.id;
     axios.get(url).then(res => {
-      // console.log(res.data.data[0].url);
-      // console.log(res.data.songs);
+      console.log(res.data);
       this.alName = res.data.songs[0].al.name;
       this.picUrl = res.data.songs[0].al.picUrl;
       this.singerName = res.data.songs[0].ar[0].name;
       this.name = res.data.songs[0].name;
       this.mv = res.data.songs[0].mv;
+      this.$emit(
+        "songList",
+        this.alName,
+        this.picUrl,
+        this.singerName,
+        this.name,
+        this.index,
+        this.songUrl
+      );
     });
   }
 };
@@ -72,6 +85,9 @@ export default {
       font-size 14px
       font-weight bold
       color #333
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
     .singer-albulm
       line-height 12px
       font-size 10px

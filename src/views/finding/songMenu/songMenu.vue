@@ -51,8 +51,8 @@
           </div>
           <!-- list开始 -->
           <div class="outer-list-container">
-            <div class="list" v-for="(item, index) in menuNum" :key="index">
-              <list :id="item.id" :index="index"> </list>
+            <div class="list" v-for="(item, index) in menuNum" :key="item.id">
+              <list :id="item.id" :index="index" @songList="songList"> </list>
             </div>
           </div>
         </div>
@@ -62,7 +62,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from "axios";
 
 export default {
@@ -75,7 +74,6 @@ export default {
     };
   },
   created() {
-    // 获取banner图
     let url =
       "http://localhost:3000/playlist/detail?id=" + this.$route.params.id;
     axios.get(url).then(res => {
@@ -87,12 +85,20 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    songList(alName, picUrl, singerName, name, index, songUrl) {
+      this.menuArray[index] = {
+        alName: alName,
+        picUrl: picUrl,
+        singerName: singerName,
+        songName: name,
+        songUrl: songUrl
+      };
     }
   }
 };
 </script>
 <style lang="stylus" scoped>
-// @import "../../assets/stylus/finding"
 .songMenu
   background-color #777
 .bg-img
