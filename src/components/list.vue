@@ -1,5 +1,5 @@
 <template>
-  <div class="list-container">
+  <div class="list-container" @click="selectOneMusic">
     <!-- {{ alName }} -->
     <div class="left">{{ index + 1 }}</div>
     <div class="center">
@@ -48,7 +48,7 @@ export default {
     });
     let url = "http://localhost:3000/song/detail?ids=" + this.id;
     axios.get(url).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.alName = res.data.songs[0].al.name;
       this.picUrl = res.data.songs[0].al.picUrl;
       this.singerName = res.data.songs[0].ar[0].name;
@@ -64,6 +64,11 @@ export default {
         this.songUrl
       );
     });
+  },
+  methods: {
+    selectOneMusic() {
+      this.$emit("selectOne", this.index);
+    }
   }
 };
 </script>

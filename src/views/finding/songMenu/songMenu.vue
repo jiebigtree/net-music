@@ -52,7 +52,13 @@
           <!-- list开始 -->
           <div class="outer-list-container">
             <div class="list" v-for="(item, index) in menuNum" :key="item.id">
-              <list :id="item.id" :index="index" @songList="songList"> </list>
+              <list
+                :id="item.id"
+                :index="index"
+                @songList="songList"
+                @selectOne="selectOne"
+              >
+              </list>
             </div>
           </div>
         </div>
@@ -63,6 +69,7 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "songMenu",
@@ -79,7 +86,6 @@ export default {
     axios.get(url).then(res => {
       this.menuList = res.data.playlist;
       this.menuNum = res.data.privileges;
-      console.log(res.data);
     });
   },
   methods: {
@@ -94,8 +100,18 @@ export default {
         songName: name,
         songUrl: songUrl
       };
+      // console.log(this.menuArray);
+    },
+    ...mapActions(["selectPlay"]),
+    selectOne(index) {
+      // console.log(this.menuArray[index].songUrl);
+      this.selectPlay({
+        list: this.menuArray,
+        index: index
+      });
     }
-  }
+  },
+  watch() {}
 };
 </script>
 <style lang="stylus" scoped>
