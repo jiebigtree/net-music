@@ -109,9 +109,11 @@ export default {
         list: this.menuArray,
         index: index
       });
+      let localArr = this.menuArray.join("-");
+      localStorage.setItem("playList", localArr);
+      console.log(localStorage.playList);
     }
-  },
-  watch() {}
+  }
 };
 </script>
 <style lang="stylus" scoped>

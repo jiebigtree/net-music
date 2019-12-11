@@ -4,6 +4,7 @@
       <button @click="small">small</button>
       {{ currentSong }}
     </div>
+    <div></div>
   </div>
 </template>
 

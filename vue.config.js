@@ -6,6 +6,11 @@ function resolve(dir) {
 
 module.exports = {
   lintOnSave: false,
+  devServer: {
+    port: 9999,
+    host: "localhost",
+    open: true
+  },
   chainWebpack: config => {
     // svg rule loader
     const svgRule = config.module.rule("svg"); // 找到svg-loader
